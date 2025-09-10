@@ -37,7 +37,7 @@ def calcular_utilidad(fruta_madurez, distancia):
     if fruta_madurez > 3: # Si la fruta está lo suficientemente madura (nivel > 3), calcula su utilidad
         utilidad = fruta_madurez/(distancia+1)
     else: # Si la fruta no está lo suficientemente madura deja su utilidad al mínimo
-        utilidad = 0
+        utilidad = -1
     return utilidad
 
 
@@ -52,8 +52,6 @@ def mejor_objetivo(grid, agente_pos):
             if grid[i][j] > 0: # Si la celda tiene fruta, pasa a calcular el mejor objetivo
                 distancia = abs(ax - i) + abs(ay - j) # Distancia del agente a la fruta
                 utilidad = calcular_utilidad(grid[i][j], distancia) # Calcula la utilidad
-                if utilidad == 0: # Si la utilidad es 0 (fruta muy inmadura) se pasa a evaluar la siguiente celda
-                    break
                 if utilidad > mejor_utilidad: # Si la utilidad es la mejor hasta el momento, se guarda su valor y su posicion
                     mejor_utilidad = utilidad
                     mejor = (i, j)
